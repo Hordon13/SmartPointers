@@ -18,7 +18,7 @@ FileIO::FileIO(const std::string &inputPath, const std::string &outputPath)
 void FileIO::readOFF()
 {
     std::ifstream inputFile(_inputPath);
-    inputFile.exceptions(std::ifstream::eofbit | std::ifstream::failbit | std::ifstream::badbit);
+    inputFile.exceptions(std::ifstream::badbit);
 
     try {
         int count = 0;
@@ -52,7 +52,7 @@ void FileIO::readOFF()
 
         inputFile.close();
 
-    } catch (std::exception const &e) {
+    } catch (const std::ifstream::failure &e) {
         std::cerr << "There was an error while reading the file : " << e.what() << std::endl;
     }
 }
