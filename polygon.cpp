@@ -27,3 +27,8 @@ void Polygon::findMinZ()
         }
     }
 }
+
+const std::vector<Vec3f> &Polygon::getCoordinates() const
+{
+    return _coordinates;
+}

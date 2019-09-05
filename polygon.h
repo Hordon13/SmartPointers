@@ -14,6 +14,8 @@ public:
     void fillCoordinates(const Vec3f &pointIndexes, const std::vector<Vec3f> &pointCoordinates);
     void findMinZ();
 
+    const std::vector<Vec3f> &getCoordinates() const;
+
 private:
     std::vector<Vec3f> _coordinates;
     float _minZ;

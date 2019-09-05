@@ -12,5 +12,7 @@ int main(int argc, char *argv[])
         polygones.push_back(polygone);
     }
 
+    handler.writeSVG(polygones);
+
     return 0;
 }
