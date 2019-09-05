@@ -5,17 +5,17 @@
 #include "polygon.h"
 
 
-Polygon::Polygon(const std::vector<int> &pointIndexes, const std::vector<Vec3f> &pointCoordinates)
+Polygon::Polygon(const Vec3f &pointIndexes, const std::vector<Vec3f> &pointCoordinates)
 {
     fillCoordinates(pointIndexes, pointCoordinates);
     findMinZ();
 }
 
-void Polygon::fillCoordinates(const std::vector<int> &pointIndexes, const std::vector<Vec3f> &pointCoordinates)
+void Polygon::fillCoordinates(const Vec3f &pointIndexes, const std::vector<Vec3f> &pointCoordinates)
 {
-    for (int i = 0; i < pointIndexes.size(); i++) {
-        _coordinates.push_back(pointCoordinates[pointIndexes[i]]);
-    }
+        _coordinates.push_back(pointCoordinates[pointIndexes.x]);
+        _coordinates.push_back(pointCoordinates[pointIndexes.y]);
+        _coordinates.push_back(pointCoordinates[pointIndexes.z]);
 }
 
 void Polygon::findMinZ()
