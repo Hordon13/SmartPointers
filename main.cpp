@@ -1,5 +1,4 @@
 #include <iostream>
-#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include "matrix4f.h"
@@ -8,10 +7,10 @@
 
 int main(int argc, char *argv[])
 {
-    std::filesystem::path inputPath(argv[1]);
-    std::ifstream inputFile(inputPath);
+    /*std::filesystem::path inputPath(argv[1]);
+    std::ifstream inputFile(inputPath);*/
 
-    int count = 0, nPoint = 0, nPoly = 0;
+    /*int count = 0, nPoint = 0, nPoly = 0;
     std::string line;
     while (getline(inputFile, line)) {
         count++;
@@ -25,7 +24,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    inputFile.close();
+    inputFile.close();*/
 	
 	// Test matrix stuff
 	Vec3f cameraFrom(3.0,2.0,1.5);
