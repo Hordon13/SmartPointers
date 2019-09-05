@@ -117,10 +117,10 @@ Vec3f vecMxMult(Vec3f v, Matrix4f mx)
     float w = v.x * mx[0][3] + v.y * mx[1][3] + v.z * mx[2][3] + 1 * mx[3][3];
 
     // normalize if w is different than 1 (convert from homogeneous to Cartesian coordinates)
-    if (w != 1) {
+    /*if (w != 1 && w != 0) {
         x /= w;
         y /= w;
         z /= w;
-    }
+    }*/
     return Vec3f(x,y,z);
 }

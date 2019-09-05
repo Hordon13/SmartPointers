@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
     // Scaling
     std::vector<Vec3f> scaledPoints;
     for (int k = 0; k < projectedPoints.size(); ++k) {
-        scaledPoints.push_back(Vec3f(projectedPoints[k].x * screenWidth / 2.0f + 2800 / 2.0f,
-                                    projectedPoints[k].y * screenHeight / 2.0f + 2100 / 2.0f,
+        scaledPoints.push_back(Vec3f(projectedPoints[k].x * screenWidth / 2.0f + screenHeight / 2.0f,
+                                    projectedPoints[k].y * screenHeight / 2.0f + screenHeight / 2.0f,
                                     projectedPoints[k].z));
     }
 
