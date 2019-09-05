@@ -84,6 +84,14 @@ Vec3f normalize(Vec3f v)
     return Vec3f(v.x * invLen, v.y * invLen, v.z * invLen);
 }
 
+Vec3f cross(Vec3f v1, Vec3f v2)
+{
+    return Vec3f(
+            v1.y * v2.z - v1.z * v2.y,
+            v1.z * v2.x - v1.x * v2.z,
+            v1.x * v2.y - v1.y * v2.x);
+}
+
 // Calculate scale for projection matrix
 float scaleCoeff(float fovDeg)
 {
@@ -91,14 +99,43 @@ float scaleCoeff(float fovDeg)
 }
 
 // Generate camera matrix
-template<typename T>
-std::vector<std::vector<T>> cameraMx(std::vector<T> from, std::vector<T> to)
+Matrix4f getCameraMx(Vec3f from, Vec3f to)
 {
+    Matrix4f result;
 
+    // forward for the (z-axis)
+    Vec3f forward = normalize(from - to);
+    result[2][0] = forward.x;
+    result[2][1] = forward.y;
+    result[2][2] = forward.z;
+    result[2][3] = 0;
+
+    // right vector
+    Vec3f tmp(0, 1, 0);
+    Vec3f right = cross(normalize(tmp), forward);
+    result[0][0] = right.x;
+    result[0][1] = right.y;
+    result[0][2] = right.z;
+    result[0][3] = 0;
+
+    // uo vector
+    Vec3f up = cross(forward, right);
+    result[1][0] = up.x;
+    result[1][1] = up.y;
+    result[1][2] = up.z;
+    result[1][3] = 0;
+
+    // translation
+    result[3][0] = from.x;
+    result[3][1] = from.y;
+    result[3][2] = from.z;
+    result[3][3] = 1;
+
+    return result;
 }
 
 // Generate projection matrix
-Matrix4f projMx(float fovDeg, float clippingN, float clippingF)
+Matrix4f getProjMx(float fovDeg, float clippingN, float clippingF)
 {
     Matrix4f mx;
 
@@ -125,43 +162,65 @@ void printMx(Matrix4f mx)
     }
 }
 
-
+// Print 1D matrix
 void printMx(Vec3f v)
 {
     std::cout << v.x << "\t" << v.y << "\t" << v.z << "\t" << '\n';
 }
 
-// Multiply vector with matrix
-template<typename T>
-std::vector<T> mxMult(std::vector<T> mx1, std::vector<std::vector<T>> mx2)
+// Multiply Matrix4f with Matrix4f
+Matrix4f mxMult(Matrix4f mx1, Matrix4f mx2)
 {
-    std::vector<T> result;
-    result.resize(mx1.size());
-    for (int i = 0; i < mx1.size(); ++i) {
-        for (int j = 0; j < mx2.size(); ++j) {
-            result[i] += mx1[i] * mx2[j][i];
+    Matrix4f result;
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            for (int k = 0; k < 4; ++k) {
+                result[i][j] += mx1[i][k] * mx2[k][j];
+            }
         }
     }
 
     return result;
 }
 
-//template<typename T>
-//void writeSVF(std::vector<std::vector<T>>)
+// Multiply Vec3f with Matrix4f
+Vec3f vecMxMult(Vec3f v, Matrix4f mx)
+{
+    float x = v.x * mx[0][0] + v.y * mx[1][0] + v.z * mx[2][0] + v.z * mx[3][0];
+    float y = v.x * mx[0][1] + v.y * mx[1][1] + v.z * mx[2][1] + v.z * mx[3][1];
+    float z = v.x * mx[0][2] + v.y * mx[1][2] + v.z * mx[2][2] + v.z * mx[3][2];
+    float w = v.x * mx[0][3] + v.y * mx[1][3] + v.z * mx[2][3] + v.z * mx[3][3];
 
+    // normalize if w is different than 1 (convert from homogeneous to Cartesian coordinates)
+    if (w != 1) {
+        x /= w;
+        y /= w;
+        z /= w;
+    }
+    return Vec3f(x,y,z);
+}
 
 int main()
 {
+//    Vec3f from(-3.0, -2.0, -1.5);
+//    Vec3f to(0, 0, 0);
+//    printMx(normalize(from - to));
+//
+//    std::cout << "\n\n";
+//
+//    Matrix4f mx1(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+//    Matrix4f mx2(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
+//    printMx(mxMult(mx1,mx2));
 
-    Vec3f from(-3.0, -2.0, -1.5);
-    Vec3f to(0, 0, 0);
-    printMx(normalize(from - to));
+    Vec3f cameraFrom(3.0,2.0,1.5);
+    Vec3f cameraTo(0,0,0);
 
-    std::cout << "\n\n";
+    Matrix4f projectionMx = getProjMx(60, 0.1, 100);
+    Matrix4f cameraMx = getCameraMx(cameraFrom, cameraTo);
 
-    Matrix4f projectionMx = projMx(60.0f, 0.1f, 50.f);
     printMx(projectionMx);
-
+    std::cout << '\n';
+    printMx(cameraMx);
 
     return 0;
 }
