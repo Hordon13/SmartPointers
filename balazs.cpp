@@ -115,11 +115,10 @@ Matrix4f projMx(float fovDeg, float clippingN, float clippingF)
 }
 
 // Print 2D matrix
-template<typename T>
-void printMx(std::vector<std::vector<T>> mx)
+void printMx(Matrix4f mx)
 {
-    for (int i = 0; i < mx.size(); ++i) {
-        for (int j = 0; j < mx[0].size(); ++j) {
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
             std::cout << mx[i][j] << "\t";
         }
         std::cout << '\n';
@@ -153,34 +152,16 @@ std::vector<T> mxMult(std::vector<T> mx1, std::vector<std::vector<T>> mx2)
 
 int main()
 {
-    // Cube
-    std::vector<std::vector<float>> points = {{0, 0, 0},
-                                              {1, 0, 0},
-                                              {1, 1, 0},
-                                              {0, 1, 0},
-                                              {0, 0, 1},
-                                              {1, 0, 1},
-                                              {1, 1, 1},
-                                              {0, 1, 1}};
-
-    // Make homogeneous coordinates
-    for (int i = 0; i < points.size(); ++i) {
-        points[i].push_back(1);
-    }
 
     Vec3f from(-3.0, -2.0, -1.5);
     Vec3f to(0, 0, 0);
     printMx(normalize(from - to));
 
+    std::cout << "\n\n";
 
-    std::vector<std::vector<float>> projectionMx = projMx(60.0f, 0.1f, 50.f);
-    std::vector<std::vector<float>> projectedPoints;
+    Matrix4f projectionMx = projMx(60.0f, 0.1f, 50.f);
+    printMx(projectionMx);
 
-    for (int j = 0; j < points.size(); ++j) {
-        projectedPoints.push_back(mxMult(points[j], projectionMx));
-    }
-
-    //printMx(projectedPoints);
 
     return 0;
 }
