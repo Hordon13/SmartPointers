@@ -3,35 +3,107 @@
 #include <cmath>
 #include <fstream>
 
+class Vec3f {
+public:
+    Vec3f()
+    { x = y = z = 0; }
+
+    Vec3f(float xc, float yc, float zc)
+    {
+        x = xc;
+        y = yc;
+        z = zc;
+    }
+
+    float length()
+    {
+        return sqrt(x * x + y * y + z * z);
+    }
+
+    Vec3f operator-(const Vec3f &v)
+    {
+        return Vec3f(x - v.x, y - v.y, z - v.z);
+    }
+
+    Vec3f operator+(const Vec3f &v)
+    {
+        return Vec3f(x + v.x, y + v.y, z + v.z);
+    }
+
+    float x;
+    float y;
+    float z;
+};
+
+class Matrix4f {
+public:
+
+    Matrix4f()
+    {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                coeff[i][j] = 0;
+            }
+        }
+    }
+
+    Matrix4f(float a, float b, float c, float d, float e, float f, float g, float h,
+             float i, float j, float k, float l, float m, float n, float o, float p)
+    {
+        coeff[0][0] = a;
+        coeff[0][1] = b;
+        coeff[0][2] = c;
+        coeff[0][3] = d;
+        coeff[1][0] = e;
+        coeff[1][1] = f;
+        coeff[1][2] = g;
+        coeff[1][3] = h;
+        coeff[2][0] = i;
+        coeff[2][1] = j;
+        coeff[2][2] = k;
+        coeff[2][3] = l;
+        coeff[3][0] = m;
+        coeff[3][1] = n;
+        coeff[3][2] = o;
+        coeff[3][3] = p;
+    }
+
+    const float *operator[](uint8_t i) const
+    { return coeff[i]; }
+
+    float *operator[](uint8_t i)
+    { return coeff[i]; }
+
+    float coeff[4][4];
+};
+
 // Normalize vector
-template<typename T>
-std::vector<T> normalize(std::vector<T> v){
-    std::vector<T> result(v);
-    T sum = 0;
-    for (int i = 0; i < v.size(); ++i) {
-        sum += v[i] * v[i];
-    }
-    double length = sqrt(sum);
-    for (int j = 0; j < result.size(); ++j) {
-        result[j] = result[j] / length;
-    }
-    return result;
+Vec3f normalize(Vec3f v)
+{
+    float invLen = 1 / v.length();
+    return Vec3f(v.x * invLen, v.y * invLen, v.z * invLen);
 }
 
 // Calculate scale for projection matrix
+float scaleCoeff(float fovDeg)
+{
+    return 1 / (tan(fovDeg * 0.5 * M_PI / 180));
+}
+
+// Generate camera matrix
 template<typename T>
-T scaleCoeff(T fovDeg){
-    return 1/(tan(fovDeg * 0.5 * M_PI / 180));
+std::vector<std::vector<T>> cameraMx(std::vector<T> from, std::vector<T> to)
+{
+
 }
 
 // Generate projection matrix
-template<typename T>
-std::vector<std::vector<T>> projMx(T fovDeg, T clippingN, T clippingF){
-    std::vector<std::vector<T>> mx;
-    mx.resize(4, std::vector<T>(4, 0));
+Matrix4f projMx(float fovDeg, float clippingN, float clippingF)
+{
+    Matrix4f mx;
 
-    T remapZ1 = -clippingF / (clippingF - clippingN);
-    T remapZ2 = -clippingF * clippingN / (clippingF - clippingN);
+    float remapZ1 = -clippingF / (clippingF - clippingN);
+    float remapZ2 = -clippingF * clippingN / (clippingF - clippingN);
 
     mx[0][0] = scaleCoeff(fovDeg);
     mx[1][1] = scaleCoeff(fovDeg);
@@ -54,14 +126,10 @@ void printMx(std::vector<std::vector<T>> mx)
     }
 }
 
-// Print 1D matrix
-template<typename T>
-void printMx(std::vector<T> mx)
+
+void printMx(Vec3f v)
 {
-    for (int i = 0; i < mx.size(); ++i) {
-        std::cout << mx[i] << "\t";
-    }
-    std::cout << '\n';
+    std::cout << v.x << "\t" << v.y << "\t" << v.z << "\t" << '\n';
 }
 
 // Multiply vector with matrix
@@ -87,21 +155,22 @@ int main()
 {
     // Cube
     std::vector<std::vector<float>> points = {{0, 0, 0},
-                                            {1, 0, 0},
-                                            {1, 1, 0},
-                                            {0, 1, 0},
-                                            {0, 0, 1},
-                                            {1, 0, 1},
-                                            {1, 1, 1},
-                                            {0, 1, 1}};
+                                              {1, 0, 0},
+                                              {1, 1, 0},
+                                              {0, 1, 0},
+                                              {0, 0, 1},
+                                              {1, 0, 1},
+                                              {1, 1, 1},
+                                              {0, 1, 1}};
 
     // Make homogeneous coordinates
     for (int i = 0; i < points.size(); ++i) {
         points[i].push_back(1);
     }
 
-    std::vector<float> vv = {2,2,2};
-    printMx(normalize(vv));
+    Vec3f from(-3.0, -2.0, -1.5);
+    Vec3f to(0, 0, 0);
+    printMx(normalize(from - to));
 
 
     std::vector<std::vector<float>> projectionMx = projMx(60.0f, 0.1f, 50.f);
