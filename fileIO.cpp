@@ -60,10 +60,10 @@ void FileIO::readOFF()
 void FileIO::writeSVG(std::vector<Polygon> poly)
 {
     std::ofstream outputFile(_outputPath);
-    outputFile << "<svg xmlns=“http://www.w3.org/2000/svg” width=“1800\" height=“1600” version=“1.1\">\n";
+    outputFile << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"600\" version=\"1.1\">\n";
 
     for (int i = 0; i < _nPoly; ++i) {
-        std::string data = "<polygon points=“";
+        std::string data = "<polygon points=\"";
         data += std::to_string(poly.at(i).getCoordinates().at(0).x) + "," +
                 std::to_string(poly.at(i).getCoordinates().at(0).y) + " " +
                 std::to_string(poly.at(i).getCoordinates().at(1).x) + "," +
@@ -71,7 +71,7 @@ void FileIO::writeSVG(std::vector<Polygon> poly)
                 std::to_string(poly.at(i).getCoordinates().at(2).x) + "," +
                 std::to_string(poly.at(i).getCoordinates().at(2).y);
 
-        data += "” style=“fill:white; stroke:black;“/>\n";
+        data += "\" style=\"fill:white; stroke:black;\"/>\n";
         outputFile << data;
     }
 
