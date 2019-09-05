@@ -57,18 +57,20 @@ void FileIO::readOFF()
     }
 }
 
-void FileIO::writeSVG(const Polygons &poly)
+void FileIO::writeSVG(std::vector<Polygon> poly)
 {
     std::ofstream outputFile(_outputPath);
     outputFile << "<svg xmlns=“http://www.w3.org/2000/svg” width=“1800\" height=“1600” version=“1.1\">\n";
 
     for (int i = 0; i < _nPoly; ++i) {
         std::string data = "<polygon points=“";
-        /* TODO: implement after Poly is ready
-        data += poly.at(i).at(1).x + "," + poly.at(i).at(1).y + " " +
-                poly.at(i).at(2).x + "," + poly.at(i).at(2).y + " " +
-                poly.at(i).at(3).x + "," + poly.at(i).at.y;
-                */
+        data += std::to_string(poly.at(i).getCoordinates().at(0).x) + "," +
+                std::to_string(poly.at(i).getCoordinates().at(0).y) + " " +
+                std::to_string(poly.at(i).getCoordinates().at(1).x) + "," +
+                std::to_string(poly.at(i).getCoordinates().at(1).y) + " " +
+                std::to_string(poly.at(i).getCoordinates().at(2).x) + "," +
+                std::to_string(poly.at(i).getCoordinates().at(2).y);
+
         data += "” style=“fill:white; stroke:black;“/>\n";
         outputFile << data;
     }
