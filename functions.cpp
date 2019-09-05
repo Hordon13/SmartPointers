@@ -111,10 +111,10 @@ Matrix4f mxMult(Matrix4f mx1, Matrix4f mx2)
 // Multiply Vec3f with Matrix4f
 Vec3f vecMxMult(Vec3f v, Matrix4f mx)
 {
-    float x = v.x * mx[0][0] + v.y * mx[1][0] + v.z * mx[2][0] + v.z * mx[3][0];
-    float y = v.x * mx[0][1] + v.y * mx[1][1] + v.z * mx[2][1] + v.z * mx[3][1];
-    float z = v.x * mx[0][2] + v.y * mx[1][2] + v.z * mx[2][2] + v.z * mx[3][2];
-    float w = v.x * mx[0][3] + v.y * mx[1][3] + v.z * mx[2][3] + v.z * mx[3][3];
+    float x = v.x * mx[0][0] + v.y * mx[1][0] + v.z * mx[2][0] + 1 * mx[3][0];
+    float y = v.x * mx[0][1] + v.y * mx[1][1] + v.z * mx[2][1] + 1 * mx[3][1];
+    float z = v.x * mx[0][2] + v.y * mx[1][2] + v.z * mx[2][2] + 1 * mx[3][2];
+    float w = v.x * mx[0][3] + v.y * mx[1][3] + v.z * mx[2][3] + 1 * mx[3][3];
 
     // normalize if w is different than 1 (convert from homogeneous to Cartesian coordinates)
     if (w != 1) {

@@ -41,11 +41,11 @@ void FileIO::readOFF()
 
                 _pointData.push_back(temp);
 
-            } else if (count > 2 && count > _nPoint + 2 && count <= (_nPoint + _nPoly + 3)) {
+            } else if (count > _nPoint + 2 && count <= (_nPoint + _nPoly + 2)) {
                 Vec3f temp;
-                int edges;
+                int vertexCount;
                 std::istringstream ssPoly(buffer);
-                ssPoly >> edges >> temp.x >> temp.y >> temp.z;
+                ssPoly >> vertexCount >> temp.x >> temp.y >> temp.z;
                 _polyData.push_back(temp);
             }
         }
