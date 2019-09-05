@@ -8,10 +8,10 @@
 #include <vector>
 #include "vec3f.h"
 
-class Polygons {
+class Polygon {
 public:
-    Polygons(const std::vector<int> &pointIndexes, const std::vector<Vec3f> &pointCoordinates);
-    void fillCoordinates(const std::vector<int> &pointIndexes, const std::vector<Vec3f> &pointCoordinates);
+    Polygon(const Vec3f &pointIndexes, const std::vector<Vec3f> &pointCoordinates);
+    void fillCoordinates(const Vec3f &pointIndexes, const std::vector<Vec3f> &pointCoordinates);
     void findMinZ();
 
 private:
