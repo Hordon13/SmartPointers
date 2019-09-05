@@ -2,6 +2,7 @@
 #include "fileIO.h"
 #include "polygon.h"
 
+
 int main(int argc, char *argv[])
 {
     const int screenWidth = 800;
@@ -38,7 +39,30 @@ int main(int argc, char *argv[])
         polygons.push_back(polygone);
     }
 
-
+    // sort
+    for (int l = 0; l < polygons.size(); ++l) {
+        for (int i = 0; i < polygons.size(); ++i) {
+            if (polygons[l].getMinZ()[0] > polygons[i].getMinZ()[0]) {
+                Polygon temp = polygons[l];
+                polygons[l] = polygons[i];
+                polygons[i] = temp;
+            }
+            if (polygons[l].getMinZ()[0] == polygons[i].getMinZ()[0]) {
+                if (polygons[l].getMinZ()[1] > polygons[i].getMinZ()[1]) {
+                    Polygon temp = polygons[l];
+                    polygons[l] = polygons[i];
+                    polygons[i] = temp;
+                }
+                if (polygons[l].getMinZ()[1] == polygons[i].getMinZ()[1]) {
+                    if (polygons[l].getMinZ()[2] > polygons[i].getMinZ()[2]) {
+                        Polygon temp = polygons[l];
+                        polygons[l] = polygons[i];
+                        polygons[i] = temp;
+                    }
+                }
+            }
+        }
+    }
 
     handler.writeSVG(polygons);
 

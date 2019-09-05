@@ -16,9 +16,11 @@ public:
 
     const std::vector<Vec3f> &getCoordinates() const;
 
+    const std::vector<float> &getMinZ() const;
+
 private:
     std::vector<Vec3f> _coordinates;
-    float _minZ;
+    std::vector<float> _minZ;
 };
 
 

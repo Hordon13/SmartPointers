@@ -3,6 +3,7 @@
 //
 
 #include "polygon.h"
+#include <algorithm>
 
 
 Polygon::Polygon(const Vec3f &pointIndexes, const std::vector<Vec3f> &pointCoordinates)
@@ -20,15 +21,19 @@ void Polygon::fillCoordinates(const Vec3f &pointIndexes, const std::vector<Vec3f
 
 void Polygon::findMinZ()
 {
-    _minZ = _coordinates[0].z;
-    for (int i = 0; i < _coordinates.size(); ++i) {
-        if (_minZ > _coordinates[i].z) {
-            _minZ = _coordinates[i].z;
-        }
-    }
+    _minZ.push_back(_coordinates[0].z);
+    _minZ.push_back(_coordinates[1].z);
+    _minZ.push_back(_coordinates[2].z);
+    std::sort(_minZ.begin(), _minZ.end());
 }
 
 const std::vector<Vec3f> &Polygon::getCoordinates() const
 {
     return _coordinates;
 }
+
+const std::vector<float> &Polygon::getMinZ() const
+{
+    return _minZ;
+}
+

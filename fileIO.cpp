@@ -71,7 +71,7 @@ void FileIO::writeSVG(std::vector<Polygon> poly)
                 std::to_string(poly.at(i).getCoordinates().at(2).x) + "," +
                 std::to_string(poly.at(i).getCoordinates().at(2).y);
 
-        data += "\" style=\"fill:none; stroke:black;\"/>\n";
+        data += "\" style=\"fill:white; stroke:black;\"/>\n";
         outputFile << data;
     }
 
