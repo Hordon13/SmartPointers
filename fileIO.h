@@ -9,12 +9,13 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "polygons.h"
 
 class FileIO {
 public:
     FileIO(const std::string &inputPath, const std::string &outputPath);
 
-    void writeSVG();
+    void writeSVG(const Polygons &poly);
 
     const std::vector<Vec3f> &getPolyData() const;
 

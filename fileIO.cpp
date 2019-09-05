@@ -57,9 +57,24 @@ void FileIO::readOFF()
     }
 }
 
-void FileIO::writeSVG()
+void FileIO::writeSVG(const Polygons &poly)
 {
+    std::ofstream outputFile(_outputPath);
+    outputFile << "<svg xmlns=“http://www.w3.org/2000/svg” width=“1800\" height=“1600” version=“1.1\">\n";
 
+    for (int i = 0; i < _nPoly; ++i) {
+        std::string data = "<polygon points=“";
+        /* TODO: implement after Poly is ready
+        data += poly.at(i).at(1).x + "," + poly.at(i).at(1).y + " " +
+                poly.at(i).at(2).x + "," + poly.at(i).at(2).y + " " +
+                poly.at(i).at(3).x + "," + poly.at(i).at.y;
+                */
+        data += "” style=“fill:white; stroke:black;“/>\n";
+        outputFile << data;
+    }
+
+    outputFile << "</svg>";
+    outputFile.close();
 }
 
 const std::vector<Vec3f> &FileIO::getPolyData() const
