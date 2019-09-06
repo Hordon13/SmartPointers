@@ -51,11 +51,13 @@ Matrix4f getCameraMx(Vec3f from, Vec3f to)
     result[1][3] = 0;
 
     // translation
+    /*
     result[3][0] = from.x;
     result[3][1] = from.y;
     result[3][2] = from.z;
     result[3][3] = 1;
-
+	*/
+	
     return result;
 }
 
