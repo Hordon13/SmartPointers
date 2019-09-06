@@ -1,10 +1,5 @@
-//
-// Created by zbora on 2019-09-05.
-//
-
-#ifndef HACKATHON_TEMP_VEC3F_H
-#define HACKATHON_TEMP_VEC3F_H
-
+#ifndef HACKATHON_VEC3F_H
+#define HACKATHON_VEC3F_H
 
 class Vec3f {
 public:
@@ -23,5 +18,4 @@ public:
     float z;
 };
 
-
-#endif //HACKATHON_TEMP_VEC3F_H
+#endif //HACKATHON_VEC3F_H

@@ -5,8 +5,7 @@
 #include "matrix4f.h"
 
 
-Matrix4f::Matrix4f()
-{
+Matrix4f::Matrix4f() {
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
             coeff[i][j] = 0;
@@ -15,8 +14,7 @@ Matrix4f::Matrix4f()
 }
 
 Matrix4f::Matrix4f(float a, float b, float c, float d, float e, float f, float g, float h,
-         float i, float j, float k, float l, float m, float n, float o, float p)
-{
+                   float i, float j, float k, float l, float m, float n, float o, float p) {
     coeff[0][0] = a;
     coeff[0][1] = b;
     coeff[0][2] = c;
@@ -35,8 +33,6 @@ Matrix4f::Matrix4f(float a, float b, float c, float d, float e, float f, float g
     coeff[3][3] = p;
 }
 
-const float *Matrix4f::operator[](uint8_t i) const
-{ return coeff[i]; }
+const float *Matrix4f::operator[](uint8_t i) const { return coeff[i]; }
 
-float *Matrix4f::operator[](uint8_t i)
-{ return coeff[i]; }
+float *Matrix4f::operator[](uint8_t i) { return coeff[i]; }

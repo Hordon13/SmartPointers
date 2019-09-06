@@ -7,16 +7,14 @@
 #include <sstream>
 #include <iostream>
 
-FileIO::FileIO(const std::string &inputPath, const std::string &outputPath)
-{
+FileIO::FileIO(const std::string &inputPath, const std::string &outputPath) {
     _inputPath = inputPath;
     _outputPath = outputPath;
 
     readOFF();
 }
 
-void FileIO::readOFF()
-{
+void FileIO::readOFF() {
     std::ifstream inputFile(_inputPath);
     inputFile.exceptions(std::ifstream::badbit);
 
@@ -57,8 +55,7 @@ void FileIO::readOFF()
     }
 }
 
-void FileIO::writeSVG(std::vector<Polygon> poly)
-{
+void FileIO::writeSVG(std::vector<Polygon> poly) {
     std::ofstream outputFile(_outputPath);
     outputFile << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"600\" version=\"1.1\">\n";
 
@@ -79,12 +76,10 @@ void FileIO::writeSVG(std::vector<Polygon> poly)
     outputFile.close();
 }
 
-const std::vector<Vec3f> &FileIO::getPolyData() const
-{
+const std::vector<Vec3f> &FileIO::getPolyData() const {
     return _polyData;
 }
 
-const std::vector<Vec3f> &FileIO::getPointData() const
-{
+const std::vector<Vec3f> &FileIO::getPointData() const {
     return _pointData;
 }

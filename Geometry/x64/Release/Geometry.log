@@ -1,0 +1,23 @@
+﻿  main.cpp
+d:\sulis\greenfox\hackathon\smartpointers\geometry\main.cpp(22): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\sulis\greenfox\hackathon\smartpointers\geometry\main.cpp(89): warning C4244: 'argument': conversion from 'const float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+d:\sulis\greenfox\hackathon\smartpointers\geometry\main.cpp(90): warning C4244: 'argument': conversion from 'const float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+d:\sulis\greenfox\hackathon\smartpointers\geometry\main.cpp(91): warning C4244: 'argument': conversion from 'const float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+  Generating code
+  2 of 773 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Geometry.vcxproj -> D:\Sulis\Greenfox\Hackathon\SmartPointers\Geometry\x64\Release\Geometry.exe

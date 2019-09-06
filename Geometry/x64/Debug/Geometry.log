@@ -1,0 +1,28 @@
+﻿  fileIO.cpp
+  functions.cpp
+d:\sulis\greenfox\hackathon\smartpointers\geometry\functions.cpp(23): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+d:\sulis\greenfox\hackathon\smartpointers\geometry\main.cpp(22): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\sulis\greenfox\hackathon\smartpointers\geometry\main.cpp(89): warning C4244: 'argument': conversion from 'const float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+d:\sulis\greenfox\hackathon\smartpointers\geometry\main.cpp(90): warning C4244: 'argument': conversion from 'const float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+d:\sulis\greenfox\hackathon\smartpointers\geometry\main.cpp(91): warning C4244: 'argument': conversion from 'const float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+  matrix4f.cpp
+  polygon.cpp
+d:\sulis\greenfox\hackathon\smartpointers\geometry\polygon.cpp(17): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
+d:\sulis\greenfox\hackathon\smartpointers\geometry\polygon.cpp(18): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
+d:\sulis\greenfox\hackathon\smartpointers\geometry\polygon.cpp(19): warning C4244: 'argument': conversion from 'const float' to 'const unsigned __int64', possible loss of data
+  vec3f.cpp
+  Generating Code...
+  Geometry.vcxproj -> D:\Sulis\Greenfox\Hackathon\SmartPointers\Geometry\x64\Debug\Geometry.exe

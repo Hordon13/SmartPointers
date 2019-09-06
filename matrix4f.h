@@ -1,6 +1,5 @@
-#ifndef HACKATHON_TEMP_MATRIX4F_H
-#define HACKATHON_TEMP_MATRIX4F_H
-
+#ifndef HACKATHON_MATRIX4F_H
+#define HACKATHON_MATRIX4F_H
 
 #include <cstdint>
 
@@ -19,5 +18,4 @@ public:
     float coeff[4][4];
 };
 
-
-#endif //HACKATHON_TEMP_MATRIX4F_H
+#endif //HACKATHON_MATRIX4F_H

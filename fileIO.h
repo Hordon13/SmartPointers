@@ -1,9 +1,5 @@
-//
-// Created by Horváth Donát on 2019. 09. 05..
-//
-
-#ifndef HACKATHON_TEMP_FILEIO_H
-#define HACKATHON_TEMP_FILEIO_H
+#ifndef HACKATHON_FILEIO_H
+#define HACKATHON_FILEIO_H
 
 #include "vec3f.h"
 #include <string>
@@ -33,4 +29,4 @@ private:
     std::vector<Vec3f> _pointData;
 };
 
-#endif //HACKATHON_TEMP_FILEIO_H
+#endif //HACKATHON_FILEIO_H

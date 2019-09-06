@@ -1,7 +1,6 @@
 #include <cmath>
 #include "vec3f.h"
 
-
 Vec3f::Vec3f()
 { x = y = z = 0; }
 
