@@ -19,7 +19,7 @@ cv::Mat calculatAndPaint(FileIO &handler, float x, float z);
 void TrackbarCallback(int pos, void *userData)
 {
     FileIO *handler = (FileIO *)userData;
-    cv::imshow("Window", calculatAndPaint(*handler, 3 * cos(x_axis * 3.14 / 180), 3 * sin(x_axis * 3.14 / 180)));
+    cv::imshow("Window", calculatAndPaint(*handler, 3 * cos(5 * x_axis * 3.14 / 180), 3 * sin(5 * x_axis * 3.14 / 180)));
 }
 
 
@@ -97,7 +97,7 @@ cv::Mat calculatAndPaint(FileIO &handler, float x, float z)
         points[1] = pt2;
         points[2] = pt3;
         points[3] = pt1;
-        cv::fillConvexPoly(canvas, points, 4, cv::Scalar::all(128));
+        cv::fillConvexPoly(canvas, points, 4, cv::Scalar::all(190));
     }
     if (!saved) {
         handler.writeSVG(polygons);
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
     
     cv::imshow("Window", canvas);
     cv::namedWindow("Window");
-    cv::createTrackbar("X" , "Window", &x_axis, 360, TrackbarCallback, &handler);
+    cv::createTrackbar("X" , "Window", &x_axis, 72, TrackbarCallback, &handler);
     cv::waitKey(0);
 
     return 0;
