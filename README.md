@@ -12,7 +12,11 @@
 
 Our task was to read information from a file containing points of a 3D object and project this image onto a 2D plane.</br>
 For this used perspective projection. We had to take into consideration the size of the object and the position, angle and field of view of the camera.</br>
-We have received a few test examples, on the following images you can see the results: </br>
+
+On the following image you can see the UML diagram about the classes we created: </br>
+![](https://i.imgur.com/2ATP0K7.png)
+
+We have received a few example test files, on the following images you can see the results: </br>
 ![](https://i.imgur.com/qsgWs66.png)
 ![](https://i.imgur.com/uAzOpl5.png)
 ![](https://i.imgur.com/8MifU9D.png)
