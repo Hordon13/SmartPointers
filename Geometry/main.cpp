@@ -8,8 +8,8 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/opencv.hpp"
 
-const int screenWidth = 1200;
-const int screenHeight = 1200;
+const int screenWidth = 800;
+const int screenHeight = 800;
 
 int x_axis = 0;
 
@@ -25,7 +25,7 @@ void TrackbarCallback(int pos, void *userData)
 
 cv::Mat calculatAndPaint(FileIO &handler, float x, float z)
 {
-    cv::Mat canvas(cv::Size(1200, 1200), CV_8UC1);
+    cv::Mat canvas(cv::Size(screenWidth, screenHeight), CV_8UC1);
     canvas = cv::Scalar::all(255);
 
     bool saved = false;
